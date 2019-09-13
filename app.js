@@ -1,6 +1,7 @@
 const mongo = require('mongodb');
 const nconf = require('nconf');
 const chalk = require('chalk');
+const cron = require('node-cron');
 const EventEmitter = require('events');
 const zmq = require("zeromq");
 const sock = zmq.socket("sub");
@@ -29,6 +30,12 @@ eventHandler.on('ready', () => {
     sock.connect(nconf.get('socketSubConnection'));
     sock.subscribe(nconf.get('queue'));
     console.log(`${chalk.green('✓')} connected to message queue`);
+});
+
+// run rss generation every 24 hour at 12:00 AM
+cron.schedule('0 0 0 * * *', () => {
+    // start rss feed generation process
+    rss.generateRss();
 });
 
 sock.on('message', (topic, message) => {

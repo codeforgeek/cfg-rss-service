@@ -14,15 +14,6 @@ function getAllArticles(callback) {
         }        
         callback(false, results);
     });
-
-    // global.db.collection('posts').find({}).limit(20).sort({
-    //     date: -1
-    // }).toArray((err, result) => {
-    //     if (err) {
-    //         return callback(true, 'error retrieving posts.');
-    //     }
-    //     callback(false, result);
-    // });
 }
 
 module.exports = {

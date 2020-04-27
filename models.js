@@ -2,7 +2,7 @@ function getAllArticles(callback) {
     global.db.collection('posts').aggregate([
         {
             $lookup: {
-                from: 'users',
+                from: 'authors',
                 localField: 'author',
                 foreignField: 'id',
                 as: 'authorData'

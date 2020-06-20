@@ -8,10 +8,10 @@ function getAllArticles(callback) {
                 as: 'authorData'
             }
         }
-    ]).limit(20).sort({ date: -1 }).toArray((err, results) => {
+    ]).limit(50).sort({ date: 1 }).toArray((err, results) => {
         if (err) {
             return callback(true, 'error retrieving posts.');
-        }        
+        }
         callback(false, results);
     });
 }
